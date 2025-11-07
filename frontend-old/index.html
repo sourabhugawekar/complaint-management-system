@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Complaint Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>📋 Online Complaint Management System</h1>
+            <p>Register, Track, and Manage Complaints Efficiently</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Add Complaint Form Section -->
+        <section class="form-section">
+            <h2>Register a New Complaint</h2>
+            <form id="complaintForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label for="complaint_type">Complaint Type *</label>
+                        <select id="complaint_type" name="complaint_type" required>
+                            <option value="">Select Type</option>
+                            <option value="Technical">Technical</option>
+                            <option value="Billing">Billing</option>
+                            <option value="Service">Service</option>
+                            <option value="Product">Product</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" name="description" rows="4" required 
+                              placeholder="Describe your complaint in detail..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span id="formBtnText">Submit Complaint</span>
+                </button>
+                <button type="button" id="cancelBtn" class="btn btn-secondary" style="display: none;">
+                    Cancel Edit
+                </button>
+            </form>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <h2>All Complaints</h2>
+            <div class="filter-controls">
+                <label for="statusFilter">Filter by Status:</label>
+                <select id="statusFilter">
+                    <option value="all">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+                <button onclick="loadComplaints()" class="btn btn-small">🔄 Refresh</button>
+            </div>
+        </section>
+
+        <!-- Complaints List Section -->
+        <section class="complaints-section">
+            <div id="complaintsContainer">
+                <!-- Complaints will be loaded here dynamically -->
+                <div class="loading">Loading complaints...</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Online Complaint Management System | Built with Node.js, Express & MySQL</p>
+        </div>
+    </footer>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Complaint</h2>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                
+                <div class="form-group">
+                    <label for="editName">Full Name *</label>
+                    <input type="text" id="editName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editEmail">Email *</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPhone">Phone Number</label>
+                    <input type="tel" id="editPhone">
+                </div>
+
+                <div class="form-group">
+                    <label for="editComplaintType">Complaint Type *</label>
+                    <select id="editComplaintType" required>
+                        <option value="Technical">Technical</option>
+                        <option value="Billing">Billing</option>
+                        <option value="Service">Service</option>
+                        <option value="Product">Product</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDescription">Description *</label>
+                    <textarea id="editDescription" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="editStatus">Status *</label>
+                    <select id="editStatus" required>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Complaint</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
